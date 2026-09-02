@@ -1,0 +1,163 @@
+/* ============================================================
+   Avi Digmi — design tokens
+   Merge this into the project's existing src/index.css.
+   Do NOT delete tokens the project already relies on.
+   Brand source: #071952 (navy) / #088395 (teal) / Assistant font
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* --- surfaces --- */
+    --background: 0 0% 100%;
+    --foreground: 216 7% 13%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 216 7% 13%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 216 7% 13%;
+
+    /* --- brand --- */
+    --primary: 226 84% 17%;            /* #071952 deep navy */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 188 90% 31%;          /* #088395 teal */
+    --secondary-foreground: 0 0% 100%;
+
+    --accent: 171 77% 64%;             /* #5eead4 mint */
+    --accent-foreground: 226 84% 17%;
+
+    --gold: 46 65% 52%;                /* #d4af37 */
+    --amber: 37 91% 55%;               /* #f5a623 */
+    --whatsapp: 128 52% 47%;           /* #39b54a */
+
+    /* --- neutrals --- */
+    --muted: 210 20% 97%;
+    --muted-foreground: 213 9% 45%;    /* #69727d */
+
+    --destructive: 2 64% 58%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 91%;                /* #e7e7e7 */
+    --input: 0 0% 91%;
+    --ring: 188 90% 31%;
+
+    --radius: 0.75rem;
+
+    /* --- composed brand effects --- */
+    --gradient-brand: linear-gradient(135deg, hsl(226 84% 17%), hsl(188 90% 31%));
+    --gradient-hero: linear-gradient(160deg, hsl(226 84% 17%) 0%, hsl(226 70% 22%) 45%, hsl(188 90% 31%) 100%);
+    --gradient-mint: linear-gradient(90deg, hsl(188 90% 31%), hsl(171 77% 64%));
+
+    --shadow-card: 0 4px 24px -8px hsl(226 84% 17% / 0.18);
+    --shadow-lift: 0 18px 48px -18px hsl(226 84% 17% / 0.35);
+    --shadow-glow: 0 0 40px -6px hsl(171 77% 64% / 0.45);
+
+    --transition-smooth: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    --background: 226 45% 8%;
+    --foreground: 0 0% 98%;
+
+    --card: 226 42% 11%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 226 42% 11%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 188 90% 42%;
+    --primary-foreground: 226 84% 10%;
+
+    --secondary: 226 40% 18%;
+    --secondary-foreground: 0 0% 98%;
+
+    --accent: 171 77% 64%;
+    --accent-foreground: 226 84% 12%;
+
+    --muted: 226 32% 16%;
+    --muted-foreground: 213 14% 68%;
+
+    --border: 226 30% 20%;
+    --input: 226 30% 20%;
+    --ring: 171 77% 64%;
+
+    --gradient-hero: linear-gradient(160deg, hsl(226 60% 10%) 0%, hsl(226 50% 14%) 45%, hsl(188 70% 20%) 100%);
+    --shadow-card: 0 4px 24px -8px hsl(0 0% 0% / 0.5);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Assistant', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-feature-settings: 'kern';
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* RTL is the site default — set dir="rtl" lang="he" on <html> */
+  [dir='rtl'] body {
+    letter-spacing: 0;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold text-balance;
+    line-height: 1.25;
+  }
+
+  /* long-form article typography (blog posts) */
+  .prose-avi {
+    @apply text-foreground/90 leading-relaxed;
+  }
+  .prose-avi h1 { @apply text-3xl md:text-4xl mt-10 mb-4 text-primary; }
+  .prose-avi h2 { @apply text-2xl md:text-3xl mt-10 mb-3 text-primary; }
+  .prose-avi h3 { @apply text-xl md:text-2xl mt-8 mb-2 text-secondary; }
+  .prose-avi p  { @apply my-4 text-base md:text-lg; }
+  .prose-avi ul { @apply my-4 space-y-2 list-disc pe-6; }
+  .prose-avi ol { @apply my-4 space-y-2 list-decimal pe-6; }
+  .prose-avi a  { @apply text-secondary underline underline-offset-4 hover:text-primary transition-colors; }
+  .prose-avi img { @apply rounded-xl my-6 w-full h-auto; }
+  .prose-avi hr { @apply my-8 border-border; }
+  .prose-avi table { @apply w-full my-6 text-sm border-collapse; }
+  .prose-avi th { @apply bg-muted p-3 text-start font-bold border border-border; }
+  .prose-avi td { @apply p-3 border border-border; }
+  .prose-avi blockquote { @apply border-s-4 border-secondary ps-4 my-6 italic text-muted-foreground; }
+}
+
+@layer utilities {
+  .bg-gradient-brand { background-image: var(--gradient-brand); }
+  .bg-gradient-hero  { background-image: var(--gradient-hero); }
+  .bg-gradient-mint  { background-image: var(--gradient-mint); }
+  .shadow-card { box-shadow: var(--shadow-card); }
+  .shadow-lift { box-shadow: var(--shadow-lift); }
+  .shadow-glow { box-shadow: var(--shadow-glow); }
+  .transition-smooth { transition: all var(--transition-smooth); }
+
+  .text-balance { text-wrap: balance; }
+  .text-pretty  { text-wrap: pretty; }
+
+  /* section rhythm used across the site */
+  .section     { @apply py-16 md:py-24; }
+  .container-avi { @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
