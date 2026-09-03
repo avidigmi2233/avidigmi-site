@@ -11,7 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { toast } from '@/hooks/use-toast';
+import { toast } from 'sonner';
 import { contactSubjects } from '@/data/site';
 
 /**
@@ -66,17 +66,14 @@ export function ContactForm() {
     setPending(true);
     try {
       await submitLead(payload);
-      toast({
-        title: 'הפנייה נשלחה בהצלחה',
+      toast.success('הפנייה נשלחה בהצלחה', {
         description: 'נחזור אליך בהקדם האפשרי.',
       });
       form.reset();
       setSubject('');
     } catch {
-      toast({
-        title: 'משהו השתבש',
+      toast.error('משהו השתבש', {
         description: 'לא הצלחנו לשלוח את הפנייה. נסו שוב או כתבו לנו בוואטסאפ.',
-        variant: 'destructive',
       });
     } finally {
       setPending(false);
